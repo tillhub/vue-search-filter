@@ -1,5 +1,6 @@
 <template>
   <div class="row">
+    <span class="label">Status</span>
     <el-select
       @change="(val) => parentData.handleSlotChange(val, 'status')"
       v-model="value"
@@ -11,8 +12,6 @@
         :label="item.label"
         :value="item.value"/>
     </el-select>
-    <div>value: {{ value }}</div>
-    <div>parentData: {{ parentData.input.status }}</div>
   </div>
 </template>
 
@@ -70,5 +69,9 @@ export default {
 <style scoped>
 .row {
   margin-top: 20px;
+}
+
+.label {
+  margin-right: 10px;
 }
 </style>

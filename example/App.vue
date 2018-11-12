@@ -13,6 +13,9 @@
       <active-switch
         :parent-data="data"
       />
+      <date-picker
+        :parent-data="data"
+      />
     </div>
   </th-query-search>
 </template>
@@ -22,13 +25,15 @@ import ThQuerySearch from '../src/index.vue'
 import BranchFilter from './BranchFilter.vue'
 import StatusFilter from './StatusFilter.vue'
 import ActiveSwitch from './ActiveSwitch.vue'
+import DatePicker from './DatePicker.vue'
 
 export default {
   components: {
     ThQuerySearch,
     BranchFilter,
     StatusFilter,
-    ActiveSwitch
+    ActiveSwitch,
+    DatePicker
   },
   methods: {
     handleSubmit (result) {

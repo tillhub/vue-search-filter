@@ -2,12 +2,10 @@
   <div class="row">
     <span class="label">Active</span>
     <el-switch
-      @change="(val) => parentData.handleSlotChange(val, 'active')"
+      @change="handleChange"
       v-model="value"
       active-color="#269ff6"
       inactive-color="#d3d3d3"/>
-    <div>value: {{ value }}</div>
-    <div>parentData: {{ parentData.input.active }}</div>
   </div>
 </template>
 
@@ -30,11 +28,17 @@ export default {
     }
   },
   methods: {
+    handleChange (val) {
+      this.parentData.handleSlotChange(val ? 'active' : 'inactive', 'active')
+    }
   },
   watch: {
     parentData (newProps) {
-      if (typeof newProps.input.active === 'boolean') {
-        this.value = newProps.input.active
+      const value = newProps.input.active
+      if (value === 'active') {
+        this.value = true
+      } else if (value === 'inactive') {
+        this.value = false
       } else {
         this.value = true
       }

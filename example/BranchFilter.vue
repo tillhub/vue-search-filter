@@ -1,5 +1,6 @@
 <template>
   <div class="row">
+    <span class="label">Branch</span>
     <el-select
       @change="handleChange"
       v-model="value"
@@ -11,8 +12,6 @@
         :label="item.label"
         :value="item.value"/>
     </el-select>
-    <div>value: {{ value }}</div>
-    <div>parentData: {{ parentData.input.branch }}</div>
   </div>
 </template>
 
@@ -81,4 +80,7 @@ export default {
 </script>
 
 <style scoped>
+.label {
+  margin-right: 10px;
+}
 </style>
