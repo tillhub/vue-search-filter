@@ -45,23 +45,27 @@ export default {
   name: 'VueQuerySearch',
   data () {
     return {
-      queryString: '',
+      // queryString: `branch1:branch1 branch2:"branch2" branch3:"branch 3" branch4:'branch 4' "branch5":branch5 "branch6":"branch6"`,
+      queryString: ``,
       isOpen: true
     }
   },
   computed: {
     queryObject () {
       const result = {}
-      const chunks = this.queryString.split(' ')
-      chunks.forEach(chunk => {
-        const words = chunk.split(':')
-        if (words.length === 2) {
+      const regex = /([\da-z]*:?"[^"]*")|([\da-z]*:?'[^']*')|([\da-z]*:?[^\s"']+)/gi
+      const chunks = this.queryString.match(regex)
+
+      chunks && chunks.forEach(chunk => {
+        const chunk2 = chunk.replace(/["']*/g, '')
+        const words = chunk2.split(':')
+        if (words.length === 2 && words[0]) {
           result[words[0]] = parseBoolean(words[1])
         } else {
           if (result.search && Array.isArray(result.search)) {
-            result.search.push(chunk)
+            result.search.push(chunk2)
           } else {
-            result.search = [chunk]
+            result.search = [chunk2]
           }
         }
       })
@@ -90,10 +94,18 @@ export default {
   },
   methods: {
     clickHandler (value, name) {
-      console.log('handleSlotChange received value: ', value.toString())
-      const stringValue = value && value.toString()
-      // create or replace
-      const regex = new RegExp(`\\b${name}\\S*`, 'gi')
+      let stringValue = value && value.toString()
+
+      // console.log('handleSlotChange received value: ', stringValue)
+
+      // if contains whitespace wrap in quotation marks
+      const whiteSpace = new RegExp(/\s/)
+      if (stringValue && whiteSpace.test(stringValue)) {
+        stringValue = `"${stringValue}"`
+      }
+
+      // check if this new query already exists in the query string
+      const regex = new RegExp(`(\\b${name}\\b:"[^"]*")|(\\b${name}\\b:'[^']*')|(\\b${name}\\b:[^\\s"']+)`, 'gi')
       if (regex.test(this.queryString)) {
         // replace
         this.queryString = this.queryString.replace(regex, stringValue ? `${name}:${stringValue}` : '')

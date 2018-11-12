@@ -30,15 +30,15 @@ export default {
       options: [
         {
           value: 'uuid1',
-          label: 'Filiale1'
+          label: 'Filiale 1'
         },
         {
           value: 'uuid2',
-          label: 'Filiale2'
+          label: 'Filiale 2'
         },
         {
           value: 'uuid3',
-          label: 'Filiale3'
+          label: 'Filiale 3'
         }
       ],
       value: initialValue
