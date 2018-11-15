@@ -38,7 +38,7 @@
             class="reset">Reset</span>
           <el-button
             type="primary"
-            @click="handleSearchClick">Search</el-button>
+            @click="$emit('submit', tagsObject)">Search</el-button>
         </div>
       </div>
     </div>
@@ -122,9 +122,6 @@ export default {
     },
     toggleDropdown () {
       this.isOpen = !this.isOpen
-    },
-    handleSearchClick () {
-      this.handleSubmit(this.tagsObject)
     },
     reset () {
       this.tags = []

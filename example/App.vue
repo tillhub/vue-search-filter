@@ -1,6 +1,8 @@
 <template>
+  <!-- <th-query-search
+    @handle-submit="handleSubmit"> -->
   <th-query-search
-    :handle-submit="handleSubmit">
+    @submit="handleSubmit">
     <div
       slot-scope="data"
     >
