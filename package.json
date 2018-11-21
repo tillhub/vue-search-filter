@@ -22,7 +22,7 @@
     "commit": "npm run precommit && git-cz"
   },
   "dependencies": {
-    "@tillhub/vue-date-picker": "^1.6.0",
+    "@tillhub/vue-date-picker": "^1.7.0",
     "date-fns": "^1.29.0",
     "typeface-lato": "0.0.54",
     "v-calendar": "^0.9.7",
