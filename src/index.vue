@@ -6,6 +6,7 @@
       @keyup.enter.native="(val) => createOrReplaceTag(val, 'search')"
       @blur="(val) => createOrReplaceTag(val, 'search')"
       :class="{ 'no-left-border': tags.length, open: isOpen }"
+      :style="inputFieldStyle"
     >
       <div
         slot="prepend"
@@ -27,7 +28,8 @@
     </el-input>
     <div
       v-if="isOpen"
-      class="container">
+      class="container"
+      :style="containerStyle">
       <slot
         :input="tagsObject"
         :addTag="createOrReplaceTag">DEFAULT</slot>
@@ -74,6 +76,16 @@ export default {
         result[tag.name] = tag.value
       })
       return result
+    },
+    inputFieldStyle () {
+      if (this.width && this.width > 100) {
+        return { width: `${parseFloat(this.width) + 60}px` }
+      }
+    },
+    containerStyle () {
+      if (this.width && this.width > 100) {
+        return { width: `${this.width}px` }
+      }
     }
   },
   components: {
@@ -83,9 +95,9 @@ export default {
       type: String,
       default: navigator.language
     },
-    handleSubmit: {
-      type: Function,
-      default: () => {}
+    width: {
+      type: String,
+      default: ''
     }
   },
   beforeMount () {
