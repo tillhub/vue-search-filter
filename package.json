@@ -3,6 +3,8 @@
   "version": "0.0.1",
   "description": "Search input field widht dropdown for filters",
   "author": "Quynh To Tuan <quynh.totuan@gmail.com>",
+  "license": "MIT",
+  "repository": "tillhub/vue-search-filter",
   "private": false,
   "main": "./dist/index.common.js",
   "files": [
