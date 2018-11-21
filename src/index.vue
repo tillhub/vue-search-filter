@@ -13,11 +13,11 @@
         v-if="tags.length">
         <el-tag
           :disable-transitions="true"
-          :key="tag.name"
+          :key="tag.value"
           v-for="tag in tags"
           closable
           @close="removeTag(tag.name)">
-          {{ tag.value }}
+          {{ tag.label || tag.value }}
         </el-tag>
       </div>
       <i
@@ -66,25 +66,27 @@ export default {
     return {
       input: ``,
       isOpen: true,
-      tags: []
+      tagsObject: {}
     }
   },
   computed: {
-    tagsObject () {
-      const result = {}
-      this.tags.forEach(tag => {
-        result[tag.name] = tag.value
-      })
-      return result
+    tags () {
+      // console.log(Object.keys(this.tagsObject).map(tag => tag))
+      return Object.keys(this.tagsObject).map(name => this.tagsObject[name])
     },
     inputFieldStyle () {
-      if (this.width && this.width > 100) {
+      if (this.width && this.width > 350) {
         return { width: `${parseFloat(this.width) + 60}px` }
       }
     },
     containerStyle () {
-      if (this.width && this.width > 100) {
+      if (this.width && this.width > 350) {
         return { width: `${this.width}px` }
+      }
+    },
+    inputPrependStyle () {
+      if (this.width && this.width > 350) {
+        return { 'max-width': `${this.width - 100}px` }
       }
     }
   },
@@ -108,29 +110,26 @@ export default {
     }
   },
   methods: {
-    createOrReplaceTag (value, name) {
-      let text = value
+    createOrReplaceTag ({ name, value, label }) {
+      if (!label && !value) return this.removeTag(name)
 
-      if (name === 'search') {
-        text = this.input
-        this.input = ''
+      const tagObject = {
+        [name]: { name, value, label }
       }
 
-      if (text) {
-        const newTag = { value: text, name }
-        const index = this.tags.findIndex(tag => tag.name === name)
-        if (index !== -1) {
-          this.tags.splice(index, 1, newTag)
-        } else {
-          this.tags.push(newTag)
-        }
-      } else {
-        this.removeTag(name)
+      this.tagsObject = {
+        ...this.tagsObject,
+        ...tagObject
+      }
+
+      if (name === 'search') {
+        this.input = ''
       }
     },
     removeTag (name) {
-      const index = this.tags.findIndex(tag => tag.name === name)
-      this.tags.splice(index, 1)
+      const copy = JSON.parse(JSON.stringify(this.tagsObject))
+      delete copy[name]
+      this.tagsObject = copy
     },
     toggleDropdown () {
       this.isOpen = !this.isOpen

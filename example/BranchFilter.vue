@@ -54,30 +54,20 @@ export default {
     }
   },
   methods: {
-    isValidOption (value) {
-      return this.options.map(option => option.label).includes(value)
-    },
     handleChange (val) {
-      const label = this.getOptionLabel(val)
-      this.addTag(label, 'branch')
+      const label = this.getLabel(val)
+
+      this.addTag({ name: 'branch', value: this.value, label })
     },
-    getOptionLabel (string) {
+    getLabel (string) {
       const option = this.options.filter(option => option.value === string)
       if (option[0]) return option[0].label
-    },
-    getOptionValue (string) {
-      const option = this.options.filter(option => option.label === string)
-      if (option[0]) return option[0].value
     }
   },
   watch: {
     input (newInput) {
-      const value = newInput && this.getOptionValue(newInput.branch)
-      if (value) {
-        this.value = value
-      } else {
-        this.value = ''
-      }
+      const value = newInput && newInput.branch && newInput.branch.value
+      if (!value) this.value = ''
     }
   }
 }

@@ -2,7 +2,7 @@
   <div class="row">
     <span class="label">Status</span>
     <el-select
-      @change="(val) => addTag(val, 'status')"
+      @change="handleChange"
       v-model="value"
       placeholder="Select"
       clearable>
@@ -29,15 +29,15 @@ export default {
       options: [
         {
           value: 'issued',
-          label: 'issued'
+          label: 'Ausgestellt'
         },
         {
           value: 'paid',
-          label: 'paid'
+          label: 'Bezahlt'
         },
         {
           value: 'overdue',
-          label: 'overdue'
+          label: 'Fällig'
         }
       ],
       value: initialValue
@@ -54,17 +54,20 @@ export default {
     }
   },
   methods: {
-    isValidOption (value) {
-      return this.options.map(option => option.value).includes(value)
+    handleChange (val) {
+      const label = this.getLabel(val)
+
+      this.addTag({ name: 'status', value: this.value, label })
+    },
+    getLabel (string) {
+      const option = this.options.filter(option => option.value === string)
+      if (option[0]) return option[0].label
     }
   },
   watch: {
     input (newInput) {
-      if (newInput && this.isValidOption(newInput.status)) {
-        this.value = newInput.status
-      } else {
-        this.value = ''
-      }
+      const value = newInput && newInput.status && newInput.status.value
+      if (!value) this.value = ''
     }
   }
 }

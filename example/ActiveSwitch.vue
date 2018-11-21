@@ -33,16 +33,13 @@ export default {
   },
   methods: {
     handleChange (val) {
-      this.addTag(val ? 'active' : 'inactive', 'active')
+      this.addTag({ name: 'active', value: val, label: val ? 'active' : 'inactive' })
     }
   },
   watch: {
     input (newInput) {
-      const value = newInput && newInput.active
-      if (value === 'active') {
-        this.value = true
-      } else if (value === 'inactive') {
-        this.value = false
+      if (newInput.hasOwnProperty('active') && newInput.active.hasOwnProperty('value')) {
+        this.value = newInput.active.value
       } else {
         this.value = true
       }

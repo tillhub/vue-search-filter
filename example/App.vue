@@ -2,7 +2,7 @@
   <th-query-search
     @submit="handleSubmit"
     @reset="handleReset"
-    width="450">
+    width="600">
     <template slot-scope="{input, addTag}">
       <branch-filter
         :input="input"
