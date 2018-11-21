@@ -5,12 +5,14 @@
       @get-dates="handleChange"
       :clearable="true"
       :date-range="value"
-      date-type="iso" />
+      date-type="iso"
+      :show-time="false"/>
   </div>
 </template>
 
 <script>
 import VueDatePicker from '@tillhub/vue-date-picker'
+import { parse } from 'date-fns'
 import '@tillhub/vue-date-picker/dist/vue-date-picker.css'
 
 export default {
@@ -25,8 +27,8 @@ export default {
   },
   methods: {
     handleChange (dateObject) {
-      console.log(dateObject)
-      const text = Object.keys(dateObject).length && `${dateObject.start.split('T')[0]} - ${dateObject.end.split('T')[0]}`
+      const text = Object.keys(dateObject).length &&
+        `${parse(dateObject.start).toLocaleDateString('en-US')} - ${parse(dateObject.end).toLocaleDateString('en-US')}`
       this.addTag(text, 'dates')
     }
   },
