@@ -6,7 +6,7 @@
   "license": "MIT",
   "repository": "tillhub/vue-search-filter",
   "private": false,
-  "main": "./dist/index.common.js",
+  "main": "./dist/vue-search-filter.common.js",
   "files": [
     "dist/*",
     "src/*",

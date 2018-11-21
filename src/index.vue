@@ -62,7 +62,7 @@ Vue.use(Button)
 Vue.use(Tag)
 
 export default {
-  name: 'VueQuerySearch',
+  name: 'VueSearchFilter',
   data () {
     return {
       input: ``,
