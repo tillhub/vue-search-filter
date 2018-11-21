@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <span class="label">Branch</span>
+    <div class="label">Branch</div>
     <el-select
       @change="handleChange"
       v-model="value"
@@ -86,5 +86,8 @@ export default {
 <style scoped>
 .label {
   margin-right: 10px;
+  width: 60px;
+  line-height: 40px;
+  display: inline-block;
 }
 </style>

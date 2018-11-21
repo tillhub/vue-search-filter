@@ -1,6 +1,4 @@
 <template>
-  <!-- <th-query-search
-    @handle-submit="handleSubmit"> -->
   <th-query-search
     @submit="handleSubmit"
     @reset="handleReset">

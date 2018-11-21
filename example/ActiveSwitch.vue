@@ -53,10 +53,13 @@ export default {
 
 <style scoped>
 .row {
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
 .label {
   margin-right: 10px;
+  width: 60px;
+  line-height: 40px;
+  display: inline-block;
 }
 </style>

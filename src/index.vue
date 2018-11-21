@@ -144,7 +144,7 @@ span {
 }
 
 .el-input {
-  width: 660px;
+  width: 460px;
 }
 
 .el-input >>> .el-input-group__prepend {
@@ -193,7 +193,7 @@ input.el-input >>> .el-input__inner:focus {
 
 .container {
   border: 1px lightgrey solid;
-  width: 600px;
+  width: 400px;
   padding: 29px;
   transform: translate(0, -1px);
   border-top: 0;
