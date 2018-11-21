@@ -1,5 +1,5 @@
 <template>
-  <th-query-search
+  <th-search-filter
     @submit="handleSubmit"
     @reset="handleReset"
     width="600">
@@ -21,11 +21,11 @@
         :add-tag="addTag"
       />
     </template>
-  </th-query-search>
+  </th-search-filter>
 </template>
 
 <script>
-import ThQuerySearch from '../src/index.vue'
+import ThSearchFilter from '../src/index.vue'
 import BranchFilter from './BranchFilter.vue'
 import StatusFilter from './StatusFilter.vue'
 import ActiveSwitch from './ActiveSwitch.vue'
@@ -33,7 +33,7 @@ import DatePicker from './DatePicker.vue'
 
 export default {
   components: {
-    ThQuerySearch,
+    ThSearchFilter,
     BranchFilter,
     StatusFilter,
     ActiveSwitch,

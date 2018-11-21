@@ -1,5 +1,5 @@
 {
-  "name": "@tillhub/vue-query-search",
+  "name": "@tillhub/vue-search-filter",
   "version": "0.0.0",
   "description": "Search input field with query language and additional filters in dropwdown",
   "author": "Quynh To Tuan <quynh.totuan@gmail.com>",
