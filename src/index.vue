@@ -3,8 +3,7 @@
     <el-input
       placeholder="Search term"
       v-model="input"
-      @keyup.enter.native="(val) => createOrReplaceTag(val, 'search')"
-      @blur="(val) => createOrReplaceTag(val, 'search')"
+      @keyup.enter.native="createOrReplaceTag({ name: 'search', value: input })"
       :class="{ 'no-left-border': tags.length, open: isOpen }"
       :style="inputFieldStyle"
     >
