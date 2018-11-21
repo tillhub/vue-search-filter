@@ -66,7 +66,7 @@ export default {
   data () {
     return {
       input: ``,
-      dropdownOpen: true,
+      dropdownOpen: false,
       tagsObject: {}
     }
   },
