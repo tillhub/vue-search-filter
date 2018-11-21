@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "serve": "vue-cli-service serve ./example/main.js",
-    "build:lib": "vue-cli-service build --target lib --name vue-table-pagination src/index.vue",
+    "build:lib": "vue-cli-service build --target lib --name vue-search-filter src/index.vue",
     "build": "npm run clean && npm run build:lib",
     "clean": "rimraf dist",
     "lint": "vue-cli-service lint",
