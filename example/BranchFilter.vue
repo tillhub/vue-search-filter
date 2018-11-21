@@ -24,7 +24,7 @@ Vue.use(Option)
 
 export default {
   data () {
-    const initialValue = this.parentData.input.branch || ''
+    const initialValue = this.input.branch || ''
     return {
       options: [
         {
@@ -44,8 +44,12 @@ export default {
     }
   },
   props: {
-    parentData: {
+    input: {
       type: Object,
+      default: () => {}
+    },
+    addTag: {
+      type: Function,
       default: () => {}
     }
   },
@@ -55,7 +59,7 @@ export default {
     },
     handleChange (val) {
       const label = this.getOptionLabel(val)
-      this.parentData.handleSlotChange(label, 'branch')
+      this.addTag(label, 'branch')
     },
     getOptionLabel (string) {
       const option = this.options.filter(option => option.value === string)
@@ -67,8 +71,8 @@ export default {
     }
   },
   watch: {
-    parentData (newProps) {
-      const value = this.getOptionValue(newProps.input.branch)
+    input (newInput) {
+      const value = newInput && this.getOptionValue(newInput.branch)
       if (value) {
         this.value = value
       } else {

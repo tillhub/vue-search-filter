@@ -2,23 +2,26 @@
   <!-- <th-query-search
     @handle-submit="handleSubmit"> -->
   <th-query-search
-    @submit="handleSubmit">
-    <div
-      slot-scope="data"
-    >
+    @submit="handleSubmit"
+    @reset="handleReset">
+    <template slot-scope="{input, addTag}">
       <branch-filter
-        :parent-data="data"
+        :input="input"
+        :add-tag="addTag"
       />
       <status-filter
-        :parent-data="data"
+        :input="input"
+        :add-tag="addTag"
       />
       <active-switch
-        :parent-data="data"
+        :input="input"
+        :add-tag="addTag"
       />
       <date-picker
-        :parent-data="data"
+        :input="input"
+        :add-tag="addTag"
       />
-    </div>
+    </template>
   </th-query-search>
 </template>
 
@@ -40,6 +43,9 @@ export default {
   methods: {
     handleSubmit (result) {
       console.log('submit', result)
+    },
+    handleReset () {
+      console.log('reset')
     }
   }
 }

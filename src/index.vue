@@ -30,7 +30,7 @@
       class="container">
       <slot
         :input="tagsObject"
-        :handleSlotChange="createOrReplaceTag">DEFAULT</slot>
+        :addTag="createOrReplaceTag">DEFAULT</slot>
       <div class="button-wrapper">
         <div class="button-box">
           <span
@@ -125,6 +125,7 @@ export default {
     },
     reset () {
       this.tags = []
+      this.$emit('reset')
     }
   },
   watch: {

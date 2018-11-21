@@ -22,19 +22,23 @@ export default {
     }
   },
   props: {
-    parentData: {
+    input: {
       type: Object,
+      default: () => {}
+    },
+    addTag: {
+      type: Function,
       default: () => {}
     }
   },
   methods: {
     handleChange (val) {
-      this.parentData.handleSlotChange(val ? 'active' : 'inactive', 'active')
+      this.addTag(val ? 'active' : 'inactive', 'active')
     }
   },
   watch: {
-    parentData (newProps) {
-      const value = newProps.input.active
+    input (newInput) {
+      const value = newInput && newInput.active
       if (value === 'active') {
         this.value = true
       } else if (value === 'inactive') {

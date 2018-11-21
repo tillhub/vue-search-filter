@@ -2,7 +2,7 @@
   <div class="row">
     <span class="label">Status</span>
     <el-select
-      @change="(val) => parentData.handleSlotChange(val, 'status')"
+      @change="(val) => addTag(val, 'status')"
       v-model="value"
       placeholder="Select"
       clearable>
@@ -24,7 +24,7 @@ Vue.use(Option)
 
 export default {
   data () {
-    const initialValue = this.parentData.input.status || ''
+    const initialValue = this.input.status || ''
     return {
       options: [
         {
@@ -44,8 +44,12 @@ export default {
     }
   },
   props: {
-    parentData: {
+    input: {
       type: Object,
+      default: () => {}
+    },
+    addTag: {
+      type: Function,
       default: () => {}
     }
   },
@@ -55,9 +59,9 @@ export default {
     }
   },
   watch: {
-    parentData (newProps) {
-      if (this.isValidOption(newProps.input.status)) {
-        this.value = newProps.input.status
+    input (newInput) {
+      if (newInput && this.isValidOption(newInput.status)) {
+        this.value = newInput.status
       } else {
         this.value = ''
       }

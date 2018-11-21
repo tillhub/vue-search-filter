@@ -4,7 +4,7 @@
     <vue-date-picker
       @get-dates="handleChange"
       :clearable="true"
-      :date-range="input"
+      :date-range="value"
       date-type="iso" />
   </div>
 </template>
@@ -17,7 +17,7 @@ export default {
   name: 'DatePicker',
   data () {
     return {
-      input: {}
+      value: {}
     }
   },
   components: {
@@ -25,19 +25,24 @@ export default {
   },
   methods: {
     handleChange (dateObject) {
-      const text = `${dateObject.start.split('T')[0]} - ${dateObject.end.split('T')[0]}`
-      this.parentData.handleSlotChange(text, 'dates')
+      console.log(dateObject)
+      const text = Object.keys(dateObject).length && `${dateObject.start.split('T')[0]} - ${dateObject.end.split('T')[0]}`
+      this.addTag(text, 'dates')
     }
   },
   props: {
-    parentData: {
+    input: {
       type: Object,
+      default: () => {}
+    },
+    addTag: {
+      type: Function,
       default: () => {}
     }
   },
   watch: {
-    parentData (newProps) {
-      if (!newProps.input.dates) this.input = {}
+    input (newInput) {
+      if (!newInput.dates) this.value = {}
     }
   }
 }
