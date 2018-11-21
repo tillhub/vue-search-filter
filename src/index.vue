@@ -9,6 +9,7 @@
     >
       <div
         slot="prepend"
+        :style="inputPrependStyle"
         v-if="tags.length">
         <el-tag
           :disable-transitions="true"
@@ -137,11 +138,16 @@ export default {
     reset () {
       this.tags = []
       this.$emit('reset')
+    },
+    setInputPrependWidth () { // ugly hack to set style dynamically in element-ui component based on custom width
+      const div = document.querySelectorAll('.el-input-group__prepend')
+      if (div[0]) div[0].style.maxWidth = `${this.width - 100}px`
     }
   },
   watch: {
     tagsObject (newValues) {
-      console.log(newValues)
+      console.log('tabgsObject', newValues)
+      this.setInputPrependWidth()
     }
   }
 }
@@ -166,12 +172,9 @@ span {
   border-color: rgb(220, 223, 230);
 }
 
-input.el-input >>> .el-input__inner:focus {
-  outline-width: 0;
-}
-
 .el-input.open.el-input-group--prepend >>> .el-input-group__prepend {
   border-bottom-left-radius: 0px;
+  overflow: scroll;
 }
 
 .el-input.open >>> .el-input__inner {
@@ -181,6 +184,10 @@ input.el-input >>> .el-input__inner:focus {
 
 .el-input.no-left-border >>> .el-input__inner {
   border-left: 0;
+}
+
+.el-input >>> .el-input__inner:focus {
+  border-color: rgb(220, 223, 230);
 }
 
 .el-input >>> .el-input__suffix {
