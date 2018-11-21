@@ -4,7 +4,7 @@
       placeholder="Search term"
       v-model="input"
       @keyup.enter.native="createOrReplaceTag({ name: 'search', value: input })"
-      :class="{ 'no-left-border': tags.length, open: isOpen }"
+      :class="{ 'no-left-border': tags.length, open: dropdownOpen }"
       :style="inputFieldStyle"
     >
       <div
@@ -23,11 +23,11 @@
       <i
         slot="suffix"
         @click="toggleDropdown"
-        :class="[{'el-icon-arrow-up': isOpen, 'el-icon-arrow-down': !isOpen}, 'caret']"
+        :class="[{'el-icon-arrow-up': dropdownOpen, 'el-icon-arrow-down': !dropdownOpen}, 'caret']"
       />
     </el-input>
     <div
-      v-if="isOpen"
+      v-if="dropdownOpen"
       class="container"
       :style="containerStyle">
       <slot
@@ -40,7 +40,8 @@
             class="reset">Reset</span>
           <el-button
             type="primary"
-            @click="$emit('submit', tagsObject)">Search</el-button>
+            :disabled="searchDisabled"
+            @click="handleSearchClick">Search</el-button>
         </div>
       </div>
     </div>
@@ -65,13 +66,12 @@ export default {
   data () {
     return {
       input: ``,
-      isOpen: true,
+      dropdownOpen: true,
       tagsObject: {}
     }
   },
   computed: {
     tags () {
-      // console.log(Object.keys(this.tagsObject).map(tag => tag))
       return Object.keys(this.tagsObject).map(name => this.tagsObject[name])
     },
     inputFieldStyle () {
@@ -88,6 +88,9 @@ export default {
       if (this.width && this.width > 350) {
         return { 'max-width': `${this.width - 100}px` }
       }
+    },
+    searchDisabled () {
+      return !Object.keys(this.tagsObject).length
     }
   },
   components: {
@@ -132,15 +135,19 @@ export default {
       this.tagsObject = copy
     },
     toggleDropdown () {
-      this.isOpen = !this.isOpen
+      this.dropdownOpen = !this.dropdownOpen
     },
     reset () {
-      this.tags = []
+      this.tagsObject = {}
       this.$emit('reset')
     },
     setInputPrependWidth () { // ugly hack to set style dynamically in element-ui component based on custom width
       const div = document.querySelectorAll('.el-input-group__prepend')
       if (div[0]) div[0].style.maxWidth = `${this.width - 100}px`
+    },
+    handleSearchClick () {
+      this.dropdownOpen = false
+      this.$emit('submit', this.tagsObject)
     }
   },
   watch: {
