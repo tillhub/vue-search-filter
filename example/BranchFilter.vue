@@ -5,7 +5,8 @@
       @change="handleChange"
       v-model="value"
       placeholder="Select"
-      clearable>
+      clearable
+      filterable>
       <el-option
         v-for="item in options"
         :key="item.value"
