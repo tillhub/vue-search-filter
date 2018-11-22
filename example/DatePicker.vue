@@ -48,6 +48,9 @@ export default {
     input (newInput) {
       if (!newInput.dates) this.value = {}
     }
+  },
+  mounted () {
+    this.value = (this.input.dates && this.input.dates.value) || {}
   }
 }
 </script>

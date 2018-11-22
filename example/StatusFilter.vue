@@ -69,6 +69,9 @@ export default {
       const value = newInput && newInput.status && newInput.status.value
       if (!value) this.value = ''
     }
+  },
+  mounted () {
+    this.value = (this.input.status && this.input.status.value) || ''
   }
 }
 </script>

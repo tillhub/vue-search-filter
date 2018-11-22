@@ -9,11 +9,10 @@
     >
       <div
         slot="prepend"
-        :style="inputPrependStyle"
         v-if="tags.length">
         <el-tag
           :disable-transitions="true"
-          :key="tag.value"
+          :key="tag.name"
           v-for="tag in tags"
           closable
           @close="removeTag(tag.name)">
@@ -84,11 +83,6 @@ export default {
         return { width: `${this.width}px` }
       }
     },
-    inputPrependStyle () {
-      if (this.width && this.width > 350) {
-        return { 'max-width': `${this.width - 100}px` }
-      }
-    },
     searchDisabled () {
       return !Object.keys(this.tagsObject).length
     }
@@ -136,6 +130,7 @@ export default {
     },
     toggleDropdown () {
       this.dropdownOpen = !this.dropdownOpen
+      this.$emit('close-dropdown')
     },
     reset () {
       this.tagsObject = {}
@@ -143,16 +138,25 @@ export default {
     },
     setInputPrependWidth () { // ugly hack to set style dynamically in element-ui component based on custom width
       const div = document.querySelectorAll('.el-input-group__prepend')
-      if (div[0]) div[0].style.maxWidth = `${this.width - 100}px`
+      if (div[0]) {
+        div[0].style.maxWidth = `${this.width - 100}px`
+      }
     },
     handleSearchClick () {
       this.dropdownOpen = false
-      this.$emit('submit', this.tagsObject)
+      const result = {}
+      Object.keys(this.tagsObject).forEach(key => {
+        result[key] = {
+          value: this.tagsObject[key].value,
+          label: this.tagsObject[key].label
+        }
+      })
+      this.$emit('submit', result)
     }
   },
   watch: {
     tagsObject (newValues) {
-      console.log('tabgsObject', newValues)
+      this.dropdownOpen = true
       this.setInputPrependWidth()
     }
   }
@@ -172,6 +176,7 @@ span {
 
 .el-input >>> .el-input-group__prepend {
   background: transparent;
+  overflow: scroll;
 }
 
 .el-input >>> .el-input__inner:hover {
@@ -226,6 +231,7 @@ span {
 .button-wrapper {
   display: flex;
   justify-content: flex-end;
+  margin-top: 20px;
 }
 
 .el-button {

@@ -70,6 +70,9 @@ export default {
       const value = newInput && newInput.branch && newInput.branch.value
       if (!value) this.value = ''
     }
+  },
+  mounted () {
+    this.value = (this.input.branch && this.input.branch.value) || ''
   }
 }
 </script>

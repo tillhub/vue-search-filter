@@ -44,6 +44,9 @@ export default {
         this.value = true
       }
     }
+  },
+  mounted () {
+    this.value = (this.input.active && this.input.active.value) || true
   }
 }
 </script>
