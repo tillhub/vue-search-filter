@@ -1,1 +1,9 @@
-{}
+{
+    "buttons": {
+        "search": "Search",
+        "reset": "Reset"
+    },
+    "input": {
+        "placeholder": "Search"
+    }
+}

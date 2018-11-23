@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-input
-      placeholder="Search term"
+      :placeholder="inputPlaceholder || this.getTranslation('input.placeholder')"
       v-model="input"
       @keyup.enter.native="createOrReplaceTag({ name: 'search', value: input })"
       :class="{ 'no-left-border': tags.length, open: dropdownOpen }"
@@ -38,11 +38,11 @@
         <div class="button-box">
           <span
             @click="reset"
-            class="reset">Reset</span>
+            class="reset">{{ this.resetButtonText || this.getTranslation("buttons.reset") }}</span>
           <el-button
             type="primary"
             :disabled="searchDisabled"
-            @click="handleSearchClick">Search</el-button>
+            @click="handleSearchClick">{{ this.searchButtonText || this.getTranslation("buttons.search") }}</el-button>
         </div>
       </div>
     </div>
@@ -52,15 +52,19 @@
 <script>
 import ElementLocale from 'element-ui/lib/locale'
 import Vue from 'vue'
+import get from 'just-safe-get'
 import 'typeface-lato'
 import 'element-ui/lib/theme-chalk/index.css'
 import enLocale from 'element-ui/lib/locale/lang/en'
 import deLocale from 'element-ui/lib/locale/lang/de'
+import VueI18n from 'vue-i18n'
+import messages from './i18n/'
 import { Input, Button, Tag } from 'element-ui'
 
 Vue.use(Input)
 Vue.use(Button)
 Vue.use(Tag)
+Vue.use(VueI18n)
 
 export default {
   name: 'VueSearchFilter',
@@ -97,6 +101,18 @@ export default {
       default: navigator.language
     },
     width: {
+      type: String,
+      default: ''
+    },
+    inputPlaceholder: {
+      type: String,
+      default: ''
+    },
+    searchButtonText: {
+      type: String,
+      default: ''
+    },
+    resetButtonText: {
       type: String,
       default: ''
     }
@@ -154,6 +170,19 @@ export default {
         }
       })
       this.$emit('submit', result)
+    },
+    getLocale () {
+      let locale = this.locale
+      locale = locale.substring(0, 2).toLowerCase()
+      if (locale === 'en' || locale === 'de') {
+        return locale
+      } else {
+        return 'en'
+      }
+    },
+    getTranslation (key) {
+      const locale = this.getLocale()
+      return get(messages, `${locale}.${key}`)
     }
   },
   watch: {
@@ -161,6 +190,19 @@ export default {
       this.dropdownOpen = true
       this.setInputPrependWidth()
     }
+  },
+  created () {
+    const locale = this.getLocale()
+    const i18n = new VueI18n({
+      locale: locale,
+      messages: {
+        'en': { ...enLocale, ...messages.en },
+        'de': { ...deLocale, ...messages.de }
+      }
+    })
+    ElementLocale.i18n((key, value) => i18n.t(key, value))
+
+    console.log(this)
   }
 }
 </script>

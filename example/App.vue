@@ -2,7 +2,10 @@
   <th-search-filter
     @submit="handleSubmit"
     @reset="handleReset"
-    width="400">
+    width="400"
+    locale="de"
+    input-placeholder="Search in customer names"
+  >
     <template
       slot="dropdown-content"
       slot-scope="{input, addTag}">
