@@ -101,7 +101,7 @@ export default {
 
 ### Slot
 
-One default slot is provided. It is highly advised to refer to the example folder to see how this slot is used. Understanding the parent-child communication is crucial as the dropdown content and input content are closely linked.
+One named slot it provided: "dropwdown-content". It is highly advised to refer to the example folder to see how this slot is used. Understanding the parent-child communication is crucial as the dropdown content and input content are closely linked.
 
 | Name   | Type     | Example                                                                                                        | Description                                                                                                                                                                                                                                                                                                  |
 |--------|----------|----------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
