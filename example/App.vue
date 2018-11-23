@@ -3,7 +3,9 @@
     @submit="handleSubmit"
     @reset="handleReset"
     width="400">
-    <template slot-scope="{input, addTag}">
+    <template
+      slot="dropdown-content"
+      slot-scope="{input, addTag}">
       <branch-filter
         :input="input"
         :add-tag="addTag"

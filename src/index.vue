@@ -20,6 +20,7 @@
         </el-tag>
       </div>
       <i
+
         slot="suffix"
         @click="toggleDropdown"
         :class="[{'el-icon-arrow-up': dropdownOpen, 'el-icon-arrow-down': !dropdownOpen}, 'caret']"
@@ -30,6 +31,7 @@
       class="container"
       :style="containerStyle">
       <slot
+        name="dropdown-content"
         :input="tagsObject"
         :addTag="createOrReplaceTag">DEFAULT</slot>
       <div class="button-wrapper">
