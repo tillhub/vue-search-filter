@@ -1,6 +1,6 @@
 {
   "name": "@tillhub/vue-search-filter",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Search input field widht dropdown for filters",
   "author": "Quynh To Tuan <quynh.totuan@gmail.com>",
   "license": "MIT",
