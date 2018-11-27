@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/tillhub/vue-search-filter/compare/v1.0.0...v1.1.0) (2018-11-27)
+
+
+### Features
+
+* made dropdown behave like element ui dropdown ([07ae8f6](https://github.com/tillhub/vue-search-filter/commit/07ae8f6))
+
 # 1.0.0 (2018-11-27)
 
 
