@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div ref="searchFilterDropdown">
     <el-input
       :placeholder="inputPlaceholder || this.getTranslation('input.placeholder')"
       v-model="input"
@@ -183,6 +183,14 @@ export default {
     getTranslation (key) {
       const locale = this.getLocale()
       return get(messages, `${locale}.${key}`)
+    },
+    closeOnOutsideClick (e) {
+      let el = this.$refs.searchFilterDropdown
+      let target = e.target
+      if (this.dropdownOpen && el !== target && !el.contains(target)) {
+        this.dropdownOpen = false
+        this.$emit('close-dropdown')
+      }
     }
   },
   watch: {
@@ -202,7 +210,10 @@ export default {
     })
     ElementLocale.i18n((key, value) => i18n.t(key, value))
 
-    console.log(this)
+    document.addEventListener('click', this.closeOnOutsideClick)
+  },
+  destroyed () {
+    document.removeEventListener('click', this.closeOnOutsideClick)
   }
 }
 </script>
@@ -270,6 +281,10 @@ span {
   padding: 29px;
   transform: translate(0, -1px);
   border-top: 0;
+  position: absolute;
+  z-index: 10;
+  background: white;
+  margin-top: 1px;
 }
 
 .button-wrapper {
