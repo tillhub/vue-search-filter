@@ -8,7 +8,9 @@
       :class="{ 'no-left-border': tags.length, open: dropdownOpen }"
       :style="inputFieldStyle"
     >
-      <div slot="prepend" v-if="tags.length">
+      <div
+        slot="prepend"
+        v-if="tags.length">
         <el-tag
           :disable-transitions="true"
           :key="tag.name"
@@ -23,8 +25,14 @@
         :class="[{'el-icon-arrow-up': dropdownOpen, 'el-icon-arrow-down': !dropdownOpen}, 'caret']"
       />
     </el-input>
-    <div v-if="dropdownOpen" class="container" :style="containerStyle">
-      <slot name="dropdown-content" :input="tagsObject" :addTag="createOrReplaceTag">DEFAULT</slot>
+    <div
+      v-if="dropdownOpen"
+      class="container"
+      :style="containerStyle">
+      <slot
+        name="dropdown-content"
+        :input="tagsObject"
+        :addTag="createOrReplaceTag">DEFAULT</slot>
       <div class="button-wrapper">
         <div class="button-box">
           <span

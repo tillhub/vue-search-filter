@@ -1,8 +1,17 @@
 <template>
   <div class="row">
     <div class="label">Branch</div>
-    <el-select @change="handleChange" v-model="value" placeholder="Select" clearable filterable>
-      <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"/>
+    <el-select
+      @change="handleChange"
+      v-model="value"
+      placeholder="Select"
+      clearable
+      filterable>
+      <el-option
+        v-for="item in options"
+        :key="item.value"
+        :label="item.label"
+        :value="item.value"/>
     </el-select>
   </div>
 </template>
