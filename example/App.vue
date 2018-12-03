@@ -1,3 +1,4 @@
+
 <template>
   <div>
     <th-search-filter
@@ -7,25 +8,11 @@
       locale="de"
       input-placeholder="Search in customer names"
     >
-      <template
-        slot="dropdown-content"
-        slot-scope="{input, addTag}">
-        <branch-filter
-          :input="input"
-          :add-tag="addTag"
-        />
-        <status-filter
-          :input="input"
-          :add-tag="addTag"
-        />
-        <active-switch
-          :input="input"
-          :add-tag="addTag"
-        />
-        <date-picker
-          :input="input"
-          :add-tag="addTag"
-        />
+      <template slot="dropdown-content" slot-scope="{input, addTag}">
+        <branch-filter :input="input" :add-tag="addTag"/>
+        <status-filter :input="input" :add-tag="addTag"/>
+        <active-switch :input="input" :add-tag="addTag"/>
+        <date-picker :input="input" :add-tag="addTag"/>
       </template>
     </th-search-filter>
     <th-search-filter
@@ -35,25 +22,11 @@
       locale="en"
       input-placeholder="Search in customer names"
     >
-      <template
-        slot="dropdown-content"
-        slot-scope="{input, addTag}">
-        <branch-filter
-          :input="input"
-          :add-tag="addTag"
-        />
-        <status-filter
-          :input="input"
-          :add-tag="addTag"
-        />
-        <active-switch
-          :input="input"
-          :add-tag="addTag"
-        />
-        <date-picker
-          :input="input"
-          :add-tag="addTag"
-        />
+      <template slot="dropdown-content" slot-scope="{input, addTag}">
+        <branch-filter :input="input" :add-tag="addTag"/>
+        <status-filter :input="input" :add-tag="addTag"/>
+        <active-switch :input="input" :add-tag="addTag"/>
+        <date-picker :input="input" :add-tag="addTag"/>
       </template>
     </th-search-filter>
   </div>

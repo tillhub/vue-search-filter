@@ -23,26 +23,15 @@ npm run serve
   <th-search-filter
     @submit="handleSubmit"
     @reset="handleReset"
-    width="400">
-    <template
-      slot="dropdown-content"
-      slot-scope="{input, addTag}">
-      <branch-filter
-        :input="input"
-        :add-tag="addTag"
-      />
-      <status-filter
-        :input="input"
-        :add-tag="addTag"
-      />
-      <active-switch
-        :input="input"
-        :add-tag="addTag"
-      />
-      <date-picker
-        :input="input"
-        :add-tag="addTag"
-      />
+    :width="500"
+    locale="de"
+    input-placeholder="Search in customer names"
+  >
+    <template slot="dropdown-content" slot-scope="{input, addTag}">
+      <branch-filter :input="input" :add-tag="addTag"/>
+      <status-filter :input="input" :add-tag="addTag"/>
+      <active-switch :input="input" :add-tag="addTag"/>
+      <date-picker :input="input" :add-tag="addTag"/>
     </template>
   </th-search-filter>
 </template>
@@ -73,10 +62,6 @@ export default {
 }
 
 </script>
-
-<style>
-</style>
-
 ```
 
 ### Attributes
