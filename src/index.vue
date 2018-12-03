@@ -1,48 +1,41 @@
 <template>
   <div ref="searchFilterDropdown">
     <el-input
+      ref="el-input"
       :placeholder="inputPlaceholder || this.getTranslation('input.placeholder')"
       v-model="input"
       @keyup.enter.native="createOrReplaceTag({ name: 'search', value: input })"
       :class="{ 'no-left-border': tags.length, open: dropdownOpen }"
       :style="inputFieldStyle"
     >
-      <div
-        slot="prepend"
-        v-if="tags.length">
+      <div slot="prepend" v-if="tags.length">
         <el-tag
           :disable-transitions="true"
           :key="tag.name"
           v-for="tag in tags"
           closable
-          @close="removeTag(tag.name)">
-          {{ tag.label || tag.value }}
-        </el-tag>
+          @close="removeTag(tag.name)"
+        >{{ tag.label || tag.value }}</el-tag>
       </div>
       <i
-
         slot="suffix"
         @click="toggleDropdown"
         :class="[{'el-icon-arrow-up': dropdownOpen, 'el-icon-arrow-down': !dropdownOpen}, 'caret']"
       />
     </el-input>
-    <div
-      v-if="dropdownOpen"
-      class="container"
-      :style="containerStyle">
-      <slot
-        name="dropdown-content"
-        :input="tagsObject"
-        :addTag="createOrReplaceTag">DEFAULT</slot>
+    <div v-if="dropdownOpen" class="container" :style="containerStyle">
+      <slot name="dropdown-content" :input="tagsObject" :addTag="createOrReplaceTag">DEFAULT</slot>
       <div class="button-wrapper">
         <div class="button-box">
           <span
             @click="reset"
-            class="reset">{{ this.resetButtonText || this.getTranslation("buttons.reset") }}</span>
+            class="reset"
+          >{{ this.resetButtonText || this.getTranslation("buttons.reset") }}</span>
           <el-button
             type="primary"
             :disabled="searchDisabled"
-            @click="handleSearchClick">{{ this.searchButtonText || this.getTranslation("buttons.search") }}</el-button>
+            @click="handleSearchClick"
+          >{{ this.searchButtonText || this.getTranslation("buttons.search") }}</el-button>
         </div>
       </div>
     </div>
@@ -101,8 +94,8 @@ export default {
       default: navigator.language
     },
     width: {
-      type: String,
-      default: ''
+      type: Number,
+      default: 0
     },
     inputPlaceholder: {
       type: String,
@@ -154,11 +147,16 @@ export default {
       this.tagsObject = {}
       this.$emit('reset')
     },
-    setInputPrependWidth () { // ugly hack to set style dynamically in element-ui component based on custom width
-      const div = document.querySelectorAll('.el-input-group__prepend')
-      if (div[0]) {
-        div[0].style.maxWidth = `${this.width - 100}px`
-      }
+    setInputPrependWidth () { // set input prepend box style dynamically ibased on custom width
+      // wrap it in $nextTick as classList of child is not available on mounted() yet
+      this.$nextTick(() => {
+        const nodesArray = Array.from(this.$refs['el-input'].$el.childNodes)
+        nodesArray && nodesArray.forEach(node => {
+          if (node.classList && node.classList.contains('el-input-group__prepend')) {
+            node.style.maxWidth = `${this.width - 100}px`
+          }
+        })
+      })
     },
     handleSearchClick () {
       this.dropdownOpen = false
