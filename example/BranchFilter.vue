@@ -6,6 +6,7 @@
       v-model="value"
       placeholder="Select"
       clearable
+      no-data-text="no data"
       filterable>
       <el-option
         v-for="item in options"

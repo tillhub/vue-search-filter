@@ -51,13 +51,9 @@
 </template>
 
 <script>
-import ElementLocale from 'element-ui/lib/locale'
 import Vue from 'vue'
 import get from 'just-safe-get'
 import 'typeface-lato'
-import 'element-ui/lib/theme-chalk/index.css'
-import enLocale from 'element-ui/lib/locale/lang/en'
-import deLocale from 'element-ui/lib/locale/lang/de'
 import VueI18n from 'vue-i18n'
 import messages from './i18n/'
 import { Input, Button, Tag } from 'element-ui'
@@ -116,13 +112,6 @@ export default {
     resetButtonText: {
       type: String,
       default: ''
-    }
-  },
-  beforeMount () {
-    if (this.locale === 'de') {
-      ElementLocale.use(deLocale)
-    } else {
-      ElementLocale.use(enLocale)
     }
   },
   methods: {

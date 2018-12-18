@@ -5,6 +5,7 @@
       @change="handleChange"
       v-model="value"
       placeholder="Select"
+      no-data-text="no data"
       clearable>
       <el-option
         v-for="item in options"
