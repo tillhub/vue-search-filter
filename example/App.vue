@@ -4,9 +4,9 @@
     <th-search-filter
       @submit="handleSubmit"
       @reset="handleReset"
-      width="400"
+      :width="400"
       locale="de"
-      input-placeholder="Search in customer names"
+      input-placeholder="Nach Kundennamen suchen"
     >
       <template
         slot="dropdown-content"
@@ -54,11 +54,18 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import ThSearchFilter from '../src/index.vue'
 import BranchFilter from './BranchFilter.vue'
 import StatusFilter from './StatusFilter.vue'
 import ActiveSwitch from './ActiveSwitch.vue'
 import DatePicker from './DatePicker.vue'
+import { Input, Button, Tag } from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+
+Vue.use(Input)
+Vue.use(Button)
+Vue.use(Tag)
 
 export default {
   components: {
