@@ -51,12 +51,8 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import safeGet from 'just-safe-get'
-import VueI18n from 'vue-i18n'
 import messages from './i18n/'
-
-Vue.use(VueI18n)
 
 export default {
   name: 'VueSearchFilter',
