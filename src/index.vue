@@ -2,7 +2,7 @@
   <div ref="searchFilterDropdown">
     <el-input
       ref="el-input"
-      :placeholder="inputPlaceholder || this.getTranslation('input.placeholder')"
+      :placeholder="inputPlaceholder || this.translate('input.placeholder')"
       v-model="input"
       @keyup.enter.native="createOrReplaceTag({ name: 'search', value: input })"
       :class="{ 'no-left-border': tags.length, open: dropdownOpen }"
