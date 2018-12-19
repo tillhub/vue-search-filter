@@ -10,7 +10,7 @@ npm install --save @tillhub/vue-search-filter
 
 ## Usage
 
-Please see example folder for complete code example.
+Please see example folder for complete code example. Note, that the css has to be imported separately. This library assumes that element-ui is being used by the caller.
 
 To see the example in action:
 
@@ -25,6 +25,7 @@ npm run serve
     @reset="handleReset"
     :width="500"
     locale="de"
+    resetButtonText="Reset now"
     input-placeholder="Search in customer names"
   >
     <template slot="dropdown-content" slot-scope="{input, addTag}">
