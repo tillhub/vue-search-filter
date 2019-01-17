@@ -4,7 +4,7 @@
       ref="el-input"
       :placeholder="inputPlaceholder || this.translate('input.placeholder')"
       v-model="input"
-      @keyup.enter.native="handleEnter({ name: 'search', value: input })"
+      @keyup.enter.native="handleEnter({ name: textFieldName, value: input })"
       :class="{ 'no-left-border': tags.length, open: dropdownOpen }"
       :style="inputFieldStyle"
     >
@@ -111,6 +111,11 @@ export default {
       required: false,
       default: () => ({})
     },
+    textFieldName: {
+      type: String,
+      required: false,
+      default: 'search'
+    },
     width: {
       type: Number,
       default: 0
@@ -166,7 +171,7 @@ export default {
         ...tagObject
       }
 
-      if (name === 'search') {
+      if (name === this.textFieldName) {
         this.input = ''
       }
     },
