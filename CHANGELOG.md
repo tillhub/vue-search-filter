@@ -1,3 +1,12 @@
+# [1.3.0](https://github.com/tillhub/vue-search-filter/compare/v1.2.0...v1.3.0) (2019-01-17)
+
+
+### Features
+
+* adds v-model support ([66548ec](https://github.com/tillhub/vue-search-filter/commit/66548ec))
+* **props:** adds check to open dropdown on tag ([849ce24](https://github.com/tillhub/vue-search-filter/commit/849ce24))
+* refactor more verbose event emission ([a942b64](https://github.com/tillhub/vue-search-filter/commit/a942b64))
+
 # [1.2.0](https://github.com/tillhub/vue-search-filter/compare/v1.1.1...v1.2.0) (2018-12-19)
 
 
