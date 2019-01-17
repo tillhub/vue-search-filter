@@ -1,3 +1,11 @@
+# [1.4.0](https://github.com/tillhub/vue-search-filter/compare/v1.3.0...v1.4.0) (2019-01-17)
+
+
+### Features
+
+* **props:** allow renaming text input field ([35bb6ea](https://github.com/tillhub/vue-search-filter/commit/35bb6ea))
+* **props:** disallow text input ([70b40a4](https://github.com/tillhub/vue-search-filter/commit/70b40a4))
+
 # [1.3.0](https://github.com/tillhub/vue-search-filter/compare/v1.2.0...v1.3.0) (2019-01-17)
 
 
