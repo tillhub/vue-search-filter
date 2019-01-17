@@ -10,14 +10,17 @@
     >
       <div
         slot="prepend"
-        v-if="tags.length">
+        v-if="tags.length"
+      >
         <el-tag
           :disable-transitions="true"
           :key="tag.name"
           v-for="tag in tags"
           closable
           @close="removeTag(tag.name)"
-        >{{ tag.label || tag.value }}</el-tag>
+        >
+          {{ tag.label || tag.value }}
+        </el-tag>
       </div>
       <i
         slot="suffix"
@@ -28,22 +31,30 @@
     <div
       v-if="dropdownOpen"
       class="container"
-      :style="containerStyle">
+      :style="containerStyle"
+    >
       <slot
         name="dropdown-content"
         :input="tagsObject"
-        :addTag="createOrReplaceTag">DEFAULT</slot>
+        :addTag="createOrReplaceTag"
+      >
+        DEFAULT
+      </slot>
       <div class="button-wrapper">
         <div class="button-box">
           <span
             @click="reset"
             class="reset"
-          >{{ this.resetButtonText || this.translate("buttons.reset") }}</span>
+          >
+            {{ this.resetButtonText || this.translate("buttons.reset") }}
+          </span>
           <el-button
             type="primary"
             :disabled="searchDisabled"
             @click="handleSearchClick"
-          >{{ this.searchButtonText || this.translate("buttons.search") }}</el-button>
+          >
+            {{ this.searchButtonText || this.translate("buttons.search") }}
+          </el-button>
         </div>
       </div>
     </div>
@@ -71,11 +82,13 @@ export default {
       if (this.width && this.width > 350) {
         return { width: `${parseFloat(this.width) + 60}px` }
       }
+      return {}
     },
     containerStyle () {
       if (this.width && this.width > 350) {
         return { width: `${this.width}px` }
       }
+      return {}
     },
     searchDisabled () {
       return !Object.keys(this.tagsObject).length
