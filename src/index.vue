@@ -4,7 +4,7 @@
       ref="el-input"
       :placeholder="inputPlaceholder || this.translate('input.placeholder')"
       v-model="input"
-      @keyup.enter.native="createOrReplaceTag({ name: 'search', value: input })"
+      @keyup.enter.native="handleEnter({ name: 'search', value: input })"
       :class="{ 'no-left-border': tags.length, open: dropdownOpen }"
       :style="inputFieldStyle"
     >
@@ -36,7 +36,7 @@
       <slot
         name="dropdown-content"
         :input="tagsObject"
-        :addTag="createOrReplaceTag"
+        :addTag="handleAdd"
       >
         DEFAULT
       </slot>
@@ -116,6 +116,21 @@ export default {
     resetButtonText: {
       type: String,
       default: ''
+    },
+    submitOnEnter: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    submitOnItem: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    closeOnSubmit: {
+      type: Boolean,
+      required: false,
+      default: true
     }
   },
   methods: {
@@ -135,13 +150,30 @@ export default {
         this.input = ''
       }
     },
+    handleAdd ({ name, value, label }) {
+      this.createOrReplaceTag({ name, value, label })
+      if (this.submitOnItem) this.$emit('submit', this.handleSubmit())
+    },
+    handleEnter ({ name, value, label }) {
+      this.createOrReplaceTag({ name, value, label })
+      if (this.submitOnEnter) this.$emit('submit', this.handleSubmit())
+    },
     removeTag (name) {
-      const copy = JSON.parse(JSON.stringify(this.tagsObject))
-      delete copy[name]
+      this.$emit('before-remove-tag', this.tagsObject[name])
+      const copy = JSON.parse(JSON.stringify({
+        ...this.tagsObject,
+        [name]: undefined
+      }))
+
       this.tagsObject = copy
     },
     toggleDropdown () {
       this.dropdownOpen = !this.dropdownOpen
+      if (this.dropdownOpen === false) this.$emit('close-dropdown')
+      this.$emit('toggled-dropdown')
+    },
+    closeDropdown () {
+      this.dropdownOpen = false
       this.$emit('close-dropdown')
     },
     reset () {
@@ -159,8 +191,9 @@ export default {
         })
       })
     },
-    handleSearchClick () {
-      this.dropdownOpen = false
+    handleSubmit () {
+      if (this.closeOnSubmit) this.closeDropdown()
+
       const result = {}
       Object.keys(this.tagsObject).forEach(key => {
         result[key] = {
@@ -168,7 +201,11 @@ export default {
           label: this.tagsObject[key].label
         }
       })
-      this.$emit('submit', result)
+
+      return result
+    },
+    handleSearchClick () {
+      this.$emit('submit', this.handleSubmit())
     },
     translate (path) {
       let dictionary = messages[this.locale]
@@ -181,8 +218,7 @@ export default {
       let el = this.$refs.searchFilterDropdown
       let target = e.target
       if (this.dropdownOpen && el !== target && !el.contains(target)) {
-        this.dropdownOpen = false
-        this.$emit('close-dropdown')
+        this.closeDropdown()
       }
     }
   },
@@ -194,9 +230,11 @@ export default {
   },
   created () {
     document.addEventListener('click', this.closeOnOutsideClick)
+    this.$emit('listeners-attached')
   },
-  destroyed () {
+  beforeDestroy () {
     document.removeEventListener('click', this.closeOnOutsideClick)
+    this.$emit('listeners-detached')
   }
 }
 </script>

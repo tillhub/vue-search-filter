@@ -39,6 +39,7 @@
     "@semantic-release/git": "^7.0.4",
     "@semantic-release/github": "^5.0.6",
     "@semantic-release/npm": "^5.0.4",
+    "@storybook/addon-actions": "^4.1.7",
     "@storybook/vue": "^4.1.7",
     "@vue/cli-plugin-babel": "^3.3.0",
     "@vue/cli-plugin-eslint": "^3.3.0",
