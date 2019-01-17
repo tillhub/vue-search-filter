@@ -1,11 +1,14 @@
 <template>
   <div class="row">
-    <span class="label">Active</span>
+    <span class="label">
+      Active
+    </span>
     <el-switch
       @change="handleChange"
       v-model="value"
       active-color="#269ff6"
-      inactive-color="#d3d3d3"/>
+      inactive-color="#d3d3d3"
+    />
   </div>
 </template>
 

@@ -1,12 +1,15 @@
 <template>
   <div class="row">
-    <span class="label">Dates</span>
+    <span class="label">
+      Dates
+    </span>
     <vue-date-picker
       @get-dates="handleChange"
       :clearable="true"
       :date-range="value"
       date-type="iso"
-      :show-time="false"/>
+      :show-time="false"
+    />
   </div>
 </template>
 

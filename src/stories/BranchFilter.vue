@@ -1,17 +1,22 @@
 <template>
   <div class="row">
-    <span class="label">Status</span>
+    <div class="label">
+      Branch
+    </div>
     <el-select
       @change="handleChange"
       v-model="value"
       placeholder="Select"
-      no-data-text="No status available"
-      clearable>
+      clearable
+      no-data-text="No branches available"
+      filterable
+    >
       <el-option
         v-for="item in options"
         :key="item.value"
         :label="item.label"
-        :value="item.value"/>
+        :value="item.value"
+      />
     </el-select>
   </div>
 </template>
@@ -25,20 +30,20 @@ Vue.use(Option)
 
 export default {
   data () {
-    const initialValue = this.input.status || ''
+    const initialValue = this.input.branch || ''
     return {
       options: [
         {
-          value: 'issued',
-          label: 'Ausgestellt'
+          value: 'uuid1',
+          label: 'Filiale 1'
         },
         {
-          value: 'paid',
-          label: 'Bezahlt'
+          value: 'uuid2',
+          label: 'Filiale 2'
         },
         {
-          value: 'overdue',
-          label: 'Fällig'
+          value: 'uuid3',
+          label: 'Filiale 3'
         }
       ],
       value: initialValue
@@ -58,7 +63,7 @@ export default {
     handleChange (val) {
       const label = this.getLabel(val)
 
-      this.addTag({ name: 'status', value: this.value, label })
+      this.addTag({ name: 'branch', value: this.value, label })
     },
     getLabel (string) {
       const option = this.options.filter(option => option.value === string)
@@ -67,21 +72,17 @@ export default {
   },
   watch: {
     input (newInput) {
-      const value = newInput && newInput.status && newInput.status.value
+      const value = newInput && newInput.branch && newInput.branch.value
       if (!value) this.value = ''
     }
   },
   mounted () {
-    this.value = (this.input.status && this.input.status.value) || ''
+    this.value = (this.input.branch && this.input.branch.value) || ''
   }
 }
 </script>
 
 <style scoped>
-.row {
-  margin-top: 15px;
-}
-
 .label {
   margin-right: 10px;
   width: 60px;

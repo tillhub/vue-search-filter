@@ -14,6 +14,7 @@
     "*.js"
   ],
   "scripts": {
+    "storybook": "start-storybook -p 9001 -c .storybook",
     "serve": "vue-cli-service serve ./example/main.js",
     "build:lib": "vue-cli-service build --target lib --name vue-search-filter src/index.vue",
     "build": "npm run clean && npm run build:lib",
@@ -33,14 +34,18 @@
     "element-ui": "^2.3.6"
   },
   "devDependencies": {
+    "@babel/core": "^7.2.2",
     "@semantic-release/changelog": "^3.0.0",
     "@semantic-release/git": "^7.0.4",
     "@semantic-release/github": "^5.0.6",
     "@semantic-release/npm": "^5.0.4",
+    "@storybook/vue": "^4.1.7",
     "@vue/cli-plugin-babel": "^3.3.0",
     "@vue/cli-plugin-eslint": "^3.3.0",
     "@vue/cli-service": "^3.3.0",
     "@vue/eslint-config-standard": "^4.0.0",
+    "babel-loader": "^8.0.5",
+    "babel-preset-vue": "^2.0.2",
     "commitizen": "^3.0.5",
     "conventional-changelog-cli": "^2.0.5",
     "cz-conventional-changelog": "^2.1.0",
@@ -51,6 +56,7 @@
     "semantic-release": "^15.9.17",
     "validate-commit-msg": "^2.14.0",
     "vue": "^2.5.22",
+    "vue-loader": "^15.5.1",
     "vue-template-compiler": "^2.5.22"
   },
   "config": {

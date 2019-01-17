@@ -14,16 +14,20 @@
       >
         <branch-filter
           :input="input"
-          :add-tag="addTag"/>
+          :add-tag="addTag"
+        />
         <status-filter
           :input="input"
-          :add-tag="addTag"/>
+          :add-tag="addTag"
+        />
         <active-switch
           :input="input"
-          :add-tag="addTag"/>
+          :add-tag="addTag"
+        />
         <date-picker
           :input="input"
-          :add-tag="addTag"/>
+          :add-tag="addTag"
+        />
       </template>
     </th-search-filter>
     <th-search-filter
@@ -35,19 +39,24 @@
     >
       <template
         slot="dropdown-content"
-        slot-scope="{input, addTag}">
+        slot-scope="{input, addTag}"
+      >
         <branch-filter
           :input="input"
-          :add-tag="addTag"/>
+          :add-tag="addTag"
+        />
         <status-filter
           :input="input"
-          :add-tag="addTag"/>
+          :add-tag="addTag"
+        />
         <active-switch
           :input="input"
-          :add-tag="addTag"/>
+          :add-tag="addTag"
+        />
         <date-picker
           :input="input"
-          :add-tag="addTag"/>
+          :add-tag="addTag"
+        />
       </template>
     </th-search-filter>
   </div>
@@ -55,13 +64,11 @@
 
 <script>
 import Vue from 'vue'
-import ThSearchFilter from '../src/index.vue'
 import BranchFilter from './BranchFilter.vue'
 import StatusFilter from './StatusFilter.vue'
 import ActiveSwitch from './ActiveSwitch.vue'
 import DatePicker from './DatePicker.vue'
 import { Input, Button, Tag } from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
 
 Vue.use(Input)
 Vue.use(Button)
@@ -69,7 +76,6 @@ Vue.use(Tag)
 
 export default {
   components: {
-    ThSearchFilter,
     BranchFilter,
     StatusFilter,
     ActiveSwitch,
