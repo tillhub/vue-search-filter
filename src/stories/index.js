@@ -6,6 +6,7 @@ import { action } from '@storybook/addon-actions'
 import Many from './App.vue'
 import Events from './events.vue'
 import VModelSupport from './v-model-support.vue'
+import DisallowTextInput from './disallow-text-input.vue'
 
 Vue.prototype.$action = action
 Vue.use(Input)
@@ -19,3 +20,4 @@ storiesOf('Vue Search Filter', module)
   .add('Many', () => (Many))
   .add('Events', () => (Events))
   .add('VModelSupport', () => (VModelSupport))
+  .add('Disallow Text Input', () => (DisallowTextInput))

@@ -81,10 +81,15 @@ export default {
       return Object.keys(this.tagsObject).map(name => this.tagsObject[name])
     },
     inputFieldStyle () {
-      if (this.width && this.width > 350) {
-        return { width: `${parseFloat(this.width) + 60}px` }
+      const obj = {}
+      if (this.allowTextInput === false) {
+        obj['pointer-events'] = 'none'
       }
-      return {}
+
+      if (this.width && this.width > 350) {
+        return { ...obj, width: `${parseFloat(this.width) + 60}px` }
+      }
+      return obj
     },
     containerStyle () {
       if (this.width && this.width > 350) {
@@ -138,6 +143,11 @@ export default {
       default: true
     },
     openOnTag: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+    allowTextInput: {
       type: Boolean,
       required: false,
       default: true
