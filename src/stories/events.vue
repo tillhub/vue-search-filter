@@ -4,6 +4,9 @@
     <th-search-filter
       ref="searchFilter"
       @submit="handleSubmit"
+      :submit-on-enter="true"
+      :close-on-submit="true"
+      :open-on-tag="false"
       @reset="handleReset"
       :width="400"
       locale="de"

@@ -131,6 +131,11 @@ export default {
       type: Boolean,
       required: false,
       default: true
+    },
+    openOnTag: {
+      type: Boolean,
+      required: false,
+      default: true
     }
   },
   methods: {
@@ -166,6 +171,11 @@ export default {
       }))
 
       this.tagsObject = copy
+    },
+    openDropdown () {
+      this.$emit('open-dropdown')
+      this.dropdownOpen = true
+      this.$emit('opened-dropdown')
     },
     toggleDropdown () {
       this.dropdownOpen = !this.dropdownOpen
@@ -224,8 +234,8 @@ export default {
   },
   watch: {
     tagsObject (newValues) {
-      this.dropdownOpen = true
       this.setInputPrependWidth()
+      if (this.openOnTag) this.openDropdown()
     }
   },
   created () {
