@@ -68,10 +68,12 @@ import messages from './i18n/'
 export default {
   name: 'VueSearchFilter',
   data () {
+    const val = this.value
+
     return {
       input: ``,
       dropdownOpen: false,
-      tagsObject: {}
+      tagsObject: val || {}
     }
   },
   computed: {
@@ -94,12 +96,15 @@ export default {
       return !Object.keys(this.tagsObject).length
     }
   },
-  components: {
-  },
   props: {
     locale: {
       type: String,
       default: 'en'
+    },
+    value: {
+      type: Object,
+      required: false,
+      default: () => ({})
     },
     width: {
       type: Number,
@@ -234,6 +239,7 @@ export default {
   },
   watch: {
     tagsObject (newValues) {
+      this.$emit('input', newValues)
       this.setInputPrependWidth()
       if (this.openOnTag) this.openDropdown()
     }
