@@ -145,6 +145,11 @@ export default {
       required: false,
       default: false
     },
+    submitOnReset: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     closeOnSubmit: {
       type: Boolean,
       required: false,
@@ -225,6 +230,9 @@ export default {
     reset () {
       this.tagsObject = {}
       this.$emit('reset')
+      if (this.submitOnReset === true) {
+        this.$emit('submit', this.handleSubmit())
+      }
     },
     setInputPrependWidth () { // set input prepend box style dynamically ibased on custom width
       // wrap it in $nextTick as classList of child is not available on mounted() yet
