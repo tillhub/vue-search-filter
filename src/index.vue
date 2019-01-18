@@ -4,6 +4,8 @@
       ref="el-input"
       :placeholder="inputPlaceholder || this.translate('input.placeholder')"
       v-model="input"
+      :clearable="clearable"
+      @clear="handleClear"
       @keyup.enter.native="handleEnter({ name: textFieldName, value: input })"
       :class="{ 'no-left-border': tags.length, open: dropdownOpen, 'text-input-disabled': allowTextInput === false }"
       :style="inputFieldStyle"
@@ -22,11 +24,15 @@
           {{ tag.label || tag.value }}
         </el-tag>
       </div>
-      <i
-        slot="suffix"
+      <div
+        slot="append"
+        class="dropdown-action"
         @click="toggleDropdown"
-        :class="[{'el-icon-arrow-up': dropdownOpen, 'el-icon-arrow-down': !dropdownOpen}, 'caret']"
-      />
+      >
+        <i
+          :class="[{'el-icon-arrow-up': dropdownOpen, 'el-icon-arrow-down': !dropdownOpen}, 'caret']"
+        />
+      </div>
     </el-input>
     <div
       v-if="dropdownOpen"
@@ -158,6 +164,11 @@ export default {
       type: Boolean,
       required: false,
       default: true
+    },
+    clearable: {
+      type: Boolean,
+      required: false,
+      default: undefined
     }
   },
   methods: {
@@ -176,6 +187,9 @@ export default {
       if (name === this.textFieldName) {
         this.input = ''
       }
+    },
+    handleClear () {
+      this.reset()
     },
     handleAdd ({ name, value, label }) {
       this.createOrReplaceTag({ name, value, label })
@@ -363,5 +377,25 @@ span {
 
 .el-input.text-input-disabled >>> input {
   pointer-events: none;
+}
+
+.el-input >>> .el-input-group__append {
+  background: white;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* mind the 1px border */
+  width: 38px;
+  height: 38px;
+  line-height: 38px;
+}
+
+.dropdown-action {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
 }
 </style>

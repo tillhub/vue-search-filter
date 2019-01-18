@@ -7,6 +7,7 @@
       :submit-on-enter="true"
       :close-on-submit="true"
       :open-on-tag="false"
+      clearable
       @reset="handleReset"
       :width="400"
       locale="de"
