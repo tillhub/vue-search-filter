@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/tillhub/vue-search-filter/compare/v1.6.0...v1.7.0) (2019-01-18)
+
+
+### Features
+
+* allow submitting on item removal ([9967ee2](https://github.com/tillhub/vue-search-filter/commit/9967ee2))
+
 # [1.6.0](https://github.com/tillhub/vue-search-filter/compare/v1.5.0...v1.6.0) (2019-01-18)
 
 
