@@ -46,14 +46,14 @@
             @click="reset"
             class="reset"
           >
-            {{ this.resetButtonText || this.translate("buttons.reset") }}
+            {{ resetButtonText || translate("buttons.reset") }}
           </span>
           <el-button
             type="primary"
             :disabled="searchDisabled"
             @click="handleSearchClick"
           >
-            {{ this.searchButtonText || this.translate("buttons.search") }}
+            {{ searchButtonText || translate("buttons.search") }}
           </el-button>
         </div>
       </div>
