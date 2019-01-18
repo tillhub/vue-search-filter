@@ -5,7 +5,7 @@
       :placeholder="inputPlaceholder || this.translate('input.placeholder')"
       v-model="input"
       @keyup.enter.native="handleEnter({ name: textFieldName, value: input })"
-      :class="{ 'no-left-border': tags.length, open: dropdownOpen }"
+      :class="{ 'no-left-border': tags.length, open: dropdownOpen, 'text-input-disabled': allowTextInput === false }"
       :style="inputFieldStyle"
     >
       <div
@@ -82,9 +82,6 @@ export default {
     },
     inputFieldStyle () {
       const obj = {}
-      if (this.allowTextInput === false) {
-        obj['pointer-events'] = 'none'
-      }
 
       if (this.width && this.width > 350) {
         return { ...obj, width: `${parseFloat(this.width) + 60}px` }
@@ -355,5 +352,9 @@ span {
 
 .el-tag:last-child {
   margin: 0;
+}
+
+.el-input.text-input-disabled >>> input {
+  pointer-events: none;
 }
 </style>
