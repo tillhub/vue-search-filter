@@ -145,6 +145,11 @@ export default {
       required: false,
       default: false
     },
+    submitOnItemRemove: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     submitOnReset: {
       type: Boolean,
       required: false,
@@ -206,12 +211,14 @@ export default {
     },
     removeTag (name) {
       this.$emit('before-remove-tag', this.tagsObject[name])
+
       const copy = JSON.parse(JSON.stringify({
         ...this.tagsObject,
         [name]: undefined
       }))
 
       this.tagsObject = copy
+      if (this.submitOnItemRemove === true) this.$emit('submit', this.handleSubmit())
     },
     openDropdown () {
       this.$emit('open-dropdown')
