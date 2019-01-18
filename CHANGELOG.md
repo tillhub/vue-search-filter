@@ -1,3 +1,15 @@
+# [1.5.0](https://github.com/tillhub/vue-search-filter/compare/v1.4.0...v1.5.0) (2019-01-18)
+
+
+### Bug Fixes
+
+* fixes scope of pointer events ([000e76b](https://github.com/tillhub/vue-search-filter/commit/000e76b))
+
+
+### Features
+
+* allow toggling click away listener ([18aff24](https://github.com/tillhub/vue-search-filter/commit/18aff24))
+
 # [1.4.0](https://github.com/tillhub/vue-search-filter/compare/v1.3.0...v1.4.0) (2019-01-17)
 
 
