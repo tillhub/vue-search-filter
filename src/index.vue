@@ -153,6 +153,11 @@ export default {
       type: Boolean,
       required: false,
       default: true
+    },
+    clickAwayListener: {
+      type: Boolean,
+      required: false,
+      default: true
     }
   },
   methods: {
@@ -257,10 +262,12 @@ export default {
     }
   },
   created () {
+    if (!this.clickAwayListener === false) return
     document.addEventListener('click', this.closeOnOutsideClick)
     this.$emit('listeners-attached')
   },
   beforeDestroy () {
+    if (!this.clickAwayListener === false) return
     document.removeEventListener('click', this.closeOnOutsideClick)
     this.$emit('listeners-detached')
   }
