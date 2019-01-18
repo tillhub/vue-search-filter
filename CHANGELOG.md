@@ -1,3 +1,11 @@
+# [1.6.0](https://github.com/tillhub/vue-search-filter/compare/v1.5.0...v1.6.0) (2019-01-18)
+
+
+### Features
+
+* allow clearing ([4af81f1](https://github.com/tillhub/vue-search-filter/commit/4af81f1))
+* allow submit on reset ([76e5d8a](https://github.com/tillhub/vue-search-filter/commit/76e5d8a))
+
 # [1.5.0](https://github.com/tillhub/vue-search-filter/compare/v1.4.0...v1.5.0) (2019-01-18)
 
 
