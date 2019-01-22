@@ -314,9 +314,13 @@ span {
   width: 460px;
 }
 
+.el-input >>> .el-input__inner {
+  height: 51px;
+}
+
 .el-input >>> .el-input-group__prepend {
   background: transparent;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .el-input >>> .el-input__inner:hover {
@@ -325,7 +329,7 @@ span {
 
 .el-input.open.el-input-group--prepend >>> .el-input-group__prepend {
   border-bottom-left-radius: 0px;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .el-input.open >>> .el-input__inner {
