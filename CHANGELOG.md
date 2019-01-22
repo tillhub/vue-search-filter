@@ -1,3 +1,10 @@
+## [1.7.1](https://github.com/tillhub/vue-search-filter/compare/v1.7.0...v1.7.1) (2019-01-22)
+
+
+### Bug Fixes
+
+* quick fix for UI overflow scroll bug ([d424f99](https://github.com/tillhub/vue-search-filter/commit/d424f99))
+
 # [1.7.0](https://github.com/tillhub/vue-search-filter/compare/v1.6.0...v1.7.0) (2019-01-18)
 
 
