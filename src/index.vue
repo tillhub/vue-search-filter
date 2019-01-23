@@ -288,6 +288,9 @@ export default {
       this.$emit('input', newValues)
       this.setInputPrependWidth()
       if (this.openOnTag) this.openDropdown()
+    },
+    value (newValues) {
+      this.tagsObject = newValues
     }
   },
   created () {
