@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/tillhub/vue-search-filter/compare/v1.7.1...v1.8.0) (2019-01-23)
+
+
+### Features
+
+* **main:** make initial value reactive to input from user ([e7bb345](https://github.com/tillhub/vue-search-filter/commit/e7bb345))
+
 ## [1.7.1](https://github.com/tillhub/vue-search-filter/compare/v1.7.0...v1.7.1) (2019-01-22)
 
 
