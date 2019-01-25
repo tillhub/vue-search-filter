@@ -179,6 +179,11 @@ export default {
       type: Boolean,
       required: false,
       default: undefined
+    },
+    logger: {
+      type: Function,
+      required: false,
+      default: (message) => {}
     }
   },
   methods: {
@@ -203,11 +208,24 @@ export default {
     },
     handleAdd ({ name, value, label }) {
       this.createOrReplaceTag({ name, value, label })
-      if (this.submitOnItem) this.$emit('submit', this.handleSubmit())
+
+      this.logger('vue-search-filter: handled add')
+
+      if (this.submitOnItem) {
+        this.$emit('submit', this.handleSubmit())
+
+        this.logger('vue-search-filter: submitted after handling add')
+      }
     },
     handleEnter ({ name, value, label }) {
       this.createOrReplaceTag({ name, value, label })
-      if (this.submitOnEnter) this.$emit('submit', this.handleSubmit())
+
+      this.logger('vue-search-filter: handled enter')
+
+      if (this.submitOnEnter) {
+        this.$emit('submit', this.handleSubmit())
+        this.logger('vue-search-filter: submitted after handling enter')
+      }
     },
     removeTag (name) {
       this.$emit('before-remove-tag', this.tagsObject[name])
@@ -218,27 +236,43 @@ export default {
       }))
 
       this.tagsObject = copy
-      if (this.submitOnItemRemove === true) this.$emit('submit', this.handleSubmit())
+
+      this.logger('vue-search-filter: removed tag')
+
+      if (this.submitOnItemRemove === true) {
+        this.$emit('submit', this.handleSubmit())
+        this.logger('vue-search-filter: submitted after tag removal')
+      }
     },
     openDropdown () {
       this.$emit('open-dropdown')
       this.dropdownOpen = true
       this.$emit('opened-dropdown')
+
+      this.logger('vue-search-filter: opened dropdown')
     },
     toggleDropdown () {
       this.dropdownOpen = !this.dropdownOpen
       if (this.dropdownOpen === false) this.$emit('close-dropdown')
       this.$emit('toggled-dropdown')
+
+      this.logger('vue-search-filter: requested dropwdown toggle')
     },
     closeDropdown () {
       this.dropdownOpen = false
       this.$emit('close-dropdown')
+
+      this.logger('vue-search-filter: requested dropdown close')
     },
     reset () {
       this.tagsObject = {}
       this.$emit('reset')
+
+      this.logger('vue-search-filter: reset')
+
       if (this.submitOnReset === true) {
         this.$emit('submit', this.handleSubmit())
+        this.logger('vue-search-filter: submitted on reset')
       }
     },
     setInputPrependWidth () { // set input prepend box style dynamically ibased on custom width
@@ -250,6 +284,8 @@ export default {
             node.style.maxWidth = `${this.width - 100}px`
           }
         })
+
+        this.logger('vue-search-filter: set prepend in nextTick')
       })
     },
     handleSubmit () {
@@ -267,6 +303,7 @@ export default {
     },
     handleSearchClick () {
       this.$emit('submit', this.handleSubmit())
+      this.logger('vue-search-filter: handled search click')
     },
     translate (path) {
       let dictionary = messages[this.locale]
@@ -280,16 +317,19 @@ export default {
       let target = e.target
       if (this.dropdownOpen && el !== target && !el.contains(target)) {
         this.closeDropdown()
+        this.logger('vue-search-filter: closed dropdown')
       }
     }
   },
   watch: {
     tagsObject (newValues) {
+      this.logger('vue-search-filter: triggered tagsObject watcher', newValues)
       this.$emit('input', newValues)
       this.setInputPrependWidth()
       if (this.openOnTag) this.openDropdown()
     },
     value (newValues) {
+      this.logger('vue-search-filter: triggered values watcher', newValues)
       this.tagsObject = newValues
     }
   },
@@ -297,11 +337,13 @@ export default {
     if (!this.clickAwayListener === false) return
     document.addEventListener('click', this.closeOnOutsideClick)
     this.$emit('listeners-attached')
+    this.logger('vue-search-filter: attached click away listener')
   },
   beforeDestroy () {
     if (!this.clickAwayListener === false) return
     document.removeEventListener('click', this.closeOnOutsideClick)
     this.$emit('listeners-detached')
+    this.logger('vue-search-filter: detached click away listener')
   }
 }
 </script>

@@ -12,6 +12,7 @@
       :width="400"
       locale="de"
       input-placeholder="Nach Kundennamen suchen"
+      :logger="logger"
     >
       <template
         slot="dropdown-content"
@@ -64,6 +65,9 @@ export default {
     },
     handleReset () {
       console.log('reset')
+    },
+    logger (messsage, ...args) {
+      console.log('logger:', messsage, args)
     }
   }
 }
