@@ -1,3 +1,10 @@
+# [1.10.0](https://github.com/tillhub/vue-search-filter/compare/v1.9.0...v1.10.0) (2019-01-25)
+
+
+### Features
+
+* **dev:** adds logger support ([1d1107c](https://github.com/tillhub/vue-search-filter/commit/1d1107c))
+
 # [1.9.0](https://github.com/tillhub/vue-search-filter/compare/v1.8.0...v1.9.0) (2019-01-25)
 
 
