@@ -163,7 +163,7 @@ export default {
     openOnTag: {
       type: Boolean,
       required: false,
-      default: true
+      default: false
     },
     allowTextInput: {
       type: Boolean,
