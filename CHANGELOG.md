@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/tillhub/vue-search-filter/compare/v1.8.0...v1.9.0) (2019-01-25)
+
+
+### Features
+
+* do not open on tag by default ([0e02fb0](https://github.com/tillhub/vue-search-filter/commit/0e02fb0))
+
 # [1.8.0](https://github.com/tillhub/vue-search-filter/compare/v1.7.1...v1.8.0) (2019-01-23)
 
 
