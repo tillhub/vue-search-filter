@@ -32,7 +32,7 @@ export default {
     handleChange (dateObject) {
       const value = Object.keys(dateObject).length && dateObject
       const label = Object.keys(dateObject).length &&
-        `${parse(dateObject.start).toLocaleDateString('en-US')} - ${parse(dateObject.end).toLocaleDateString('en-US')}`
+        `${new Date(dateObject.start).toLocaleDateString('en-US')} - ${new Date(dateObject.end).toLocaleDateString('en-US')}`
 
       this.addTag({ name: 'dates', value, label })
     }
