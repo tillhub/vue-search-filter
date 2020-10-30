@@ -10,12 +10,12 @@ npm install --save @tillhub/vue-search-filter
 
 ## Usage
 
-Please see example folder for complete code example. Note, that the css has to be imported separately. This library assumes that element-ui is being used by the caller.
+Please see src/stories folder for complete code example. Note, that the css has to be imported separately. This library assumes that element-ui is being used by the caller.
 
-To see the example in action:
+To see the examples in action:
 
 ```bash
-npm run serve
+npm run storybook
 ```
 
 ```html
